@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, Menu } from 'electron';
 import * as path from 'path';
 
 const homeWindow = () => {
@@ -10,11 +10,19 @@ const homeWindow = () => {
     },
   });
 
-  // TODO: Disable menu in production build
-  // Menu.setApplicationMenu(null);
-  win.loadFile('./dist/home.bundle.html');
+  /// #if !DEVELOPMENT
+  Menu.setApplicationMenu(null);
+  /// #endif
 
+  /// #if DEV_SERVER
+  win.loadURL(`http://localhost:${process.env.DEV_PORT}/home.bundle.html`);
+  /// #else
+  win.loadFile('./dist/home.bundle.html');
+  /// #endif
+
+  /// #if DEVELOPMENT
   win.webContents.openDevTools();
+  /// #endif
 };
 
 export default homeWindow;

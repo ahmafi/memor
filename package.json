@@ -9,15 +9,19 @@
   "license": "MIT",
   "author": {
     "name": "Amir Hossein Mafi",
-    "email": "amir77mafi@gmail.com"
+    "email": "amir77mafi@gmail.com",
+    "url": "https://github.com/ahmafi"
   },
   "main": "dist/main.bundle.js",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
-    "build:main": "webpack --config ./configs/webpack.config.main.js",
+    "build:main": " webpack --config ./configs/webpack.config.main.js",
     "build:renderer": "webpack --config ./configs/webpack.config.renderer.js",
     "lint": "eslint . --cache --ext .js,.jsx,.json",
-    "start": "electron ."
+    "start": "cross-env DEV_SERVER=true DEV_PORT=1212 npm run start:renderer",
+    "start:main": "npm run build:main && electron .",
+    "start:renderer": "webpack serve --config ./configs/webpack.config.renderer.js",
+    "static": "electron ."
   },
   "browserslist": [
     "electron 16.0.4"
@@ -33,6 +37,7 @@
     "babel-loader": "^8.2.3",
     "concurrently": "^6.4.0",
     "copy-webpack-plugin": "^10.0.0",
+    "cross-env": "^7.0.3",
     "electron": "^16.0.4",
     "eslint": "^8.4.1",
     "eslint-config-airbnb": "^19.0.2",
@@ -42,8 +47,10 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
+    "ifdef-loader": "^2.3.2",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0",
     "webpack-merge": "^5.8.0"
   }
 }
