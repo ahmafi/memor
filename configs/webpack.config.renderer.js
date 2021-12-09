@@ -5,8 +5,8 @@ const BaseConfig = require('./webpack.config.base');
 module.exports = merge(BaseConfig, {
   target: 'electron-renderer',
   entry: {
-    home: './src/renderer/home/home.js',
-    popup: './src/renderer/popup/popup.js',
+    home: './src/renderer/home/home.jsx',
+    popup: './src/renderer/popup/popup.jsx',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -20,4 +20,7 @@ module.exports = merge(BaseConfig, {
       template: './src/renderer/popup/template.html',
     }),
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
 });
