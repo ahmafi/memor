@@ -14,8 +14,9 @@
   },
   "main": "dist/main.bundle.js",
   "scripts": {
-    "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
+    "build": "concurrently \"npm run build:main\" \"npm run build:preload\" \"npm run build:renderer\"",
     "build:main": " webpack --config ./configs/webpack.config.main.js",
+    "build:preload": " webpack --config ./configs/webpack.config.preload.js",
     "build:renderer": "webpack --config ./configs/webpack.config.renderer.js",
     "lint": "eslint . --cache --ext .js,.jsx,.json",
     "start": "cross-env DEV_SERVER=true DEV_PORT=1212 npm run start:renderer",
