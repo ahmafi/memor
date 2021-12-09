@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-const Clipboard = () => {
-  const [clipboard, setClipboard] = useState("");
+const Clipboard = function Clipboard() {
+  const [clipboard, setClipboard] = useState('');
 
   useEffect(async () => {
     const text = await window.electron.getClipboardText();

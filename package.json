@@ -1,22 +1,31 @@
 {
   "name": "memor-electron",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Translate and memorize the fastest way",
-  "main": "dist/main.bundle.js",
-  "author": "Amir Hossein Mafi",
-  "license": "MIT",
-  "browserslist": [
-    "electron 16.0.4"
-  ],
   "keywords": [
     "electron",
     "react"
   ],
+  "license": "MIT",
+  "author": {
+    "name": "Amir Hossein Mafi",
+    "email": "amir77mafi@gmail.com"
+  },
+  "main": "dist/main.bundle.js",
   "scripts": {
-    "start": "electron .",
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "webpack --config ./configs/webpack.config.main.js",
-    "build:renderer": "webpack --config ./configs/webpack.config.renderer.js"
+    "build:renderer": "webpack --config ./configs/webpack.config.renderer.js",
+    "lint": "eslint . --cache --ext .js,.jsx,.json",
+    "start": "electron ."
+  },
+  "browserslist": [
+    "electron 16.0.4"
+  ],
+  "dependencies": {
+    "core-js": "^3.19.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",
@@ -25,14 +34,16 @@
     "concurrently": "^6.4.0",
     "copy-webpack-plugin": "^10.0.0",
     "electron": "^16.0.4",
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-json-format": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-merge": "^5.8.0"
-  },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "core-js": "^3.19.3"
   }
 }

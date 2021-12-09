@@ -1,26 +1,27 @@
-import { app, ipcMain, clipboard, globalShortcut } from "electron";
+import {
+  app, BrowserWindow, ipcMain, clipboard, globalShortcut,
+} from 'electron';
 
-import * as path from "path";
-import homeWindow from "./home-window";
-import popupWindow from "./popup-window";
+import homeWindow from './home-window';
+import popupWindow from './popup-window';
 
 app.whenReady().then(() => {
-  globalShortcut.register("Alt+Q", () => {
+  globalShortcut.register('Alt+Q', () => {
     popupWindow();
   });
 
   homeWindow();
 
-  app.on("activate", () => {
+  app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) homeWindow();
   });
 });
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwing") app.quit();
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit();
 });
 
-ipcMain.handle("get-clipboard-text", async (event, ...args) => {
+ipcMain.handle('get-clipboard-text', async () => {
   const clipboardText = clipboard.readText();
   return clipboardText;
 });
